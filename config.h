@@ -39,7 +39,8 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "ranger",   NULL,	  NULL,       0,	    1,           -1 },
+	{ "st",       NULL,	  "ranger*",  0,	    1,           -1 },
+	{ "ncmpcpp",  NULL,       NULL,       1 <<7,        0,           -1 },
 };
 
 /* layout(s) */
@@ -68,6 +69,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+static const char *dmenudesktop[] = { "i3-dmenu-desktop" };
 static const char *termcmd[]  = { "st", NULL };
 static const char *ncmpcpp[] = { "st", "-e", "ncmpcpp" };
 
@@ -145,7 +147,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	/*{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },*/
 };
 
 /* button definitions */
