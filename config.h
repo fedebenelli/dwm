@@ -14,7 +14,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray  = 1;	/* 0 means no systray */
 static int showbar            = 0;	/* 0 means no bar */
 static int topbar             = 1;	/* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=9:style=Bold", "emoji:size=8" };
+static const char *fonts[]          = { "monospace:size=9", "emoji:size=8" };
 static const char dmenufont[]       = "monospace:size=9";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
@@ -44,6 +44,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
+#include "fibonacci.c"
 static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static int nmaster     = 1;    /* number of clients in master area */
 static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
@@ -53,6 +54,8 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+ 	{ "[@]",      spiral },
+ 	{ "[\\]",     dwindle },
 };
 
 /* key definitions */
@@ -131,6 +134,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ShiftMask,		XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
+	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
+	//{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
 	/*__/Layouts__*/
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
